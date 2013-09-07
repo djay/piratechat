@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>PirateChat</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="http://cdn.sockjs.org/sockjs-0.3.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <script type="text/javascript" src="${request.application_url}/static/app.js"></script> -->
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        var conn;
+        $("#send").submit(function(e) {
+            e.preventDefault();
+            var line = $("#line").val();
+            $("#line").val("");
+            console.log('sending', line);
+            conn.send(line);
+        })
+
+
+        var connect = function() {
+            conn = new SockJS('http://' + window.location.host + '/__sockjs__');
+            console.log('Connecting...');
+            conn.onopen = function() {
+                console.log('Connected');
+            };
+            conn.onmessage = function (e) {
+                  console.log("received: "+e.data);
+                  $("#response").text(e.data);
+            };
+            conn.onclose = function(e) {
+                setTimeout(connect,2000);
+            }
+        }
+        connect();
+    });
+    </script>
+</head>
+<body>
+
+   <h1>Speak to a pirate today</h1>
+
+
+   <form id="send" style="text-align:center">
+       <input id="line" name="line" value=""/>
+       <input type="submit" name="submit"/>
+
+       <div id="response">
+       </div>
+
+   </form>
+
+</body>
+</html>
