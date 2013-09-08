@@ -4,7 +4,6 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script type="text/javascript" src="http://cdn.sockjs.org/sockjs-0.3.1.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <script type="text/javascript" src="${request.application_url}/static/app.js"></script> -->
     <script type="text/javascript">
     $(document).ready(function()
     {
@@ -37,18 +36,23 @@
     </script>
 </head>
 <body>
+   <div style="text-align:center">
 
-   <h1>Speak to a pirate today</h1>
+   <h1>Pirate Parrot</h1>
 
 
-   <form id="send" style="text-align:center">
+   <form id="send" >
        <input id="line" name="line" value=""/>
-       <input type="submit" name="submit"/>
+       <input type="submit" name="submit" value="send"/>
 
        <div id="response">
        </div>
 
    </form>
+
+       <div>git@github.com:djay/piratechat.git</div>
+
+    </div>
 
 </body>
 </html>

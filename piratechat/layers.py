@@ -8,9 +8,13 @@ class myPyramidLayer(Layer):
     defaultBases = ()
 
     def setUp(self):
-        assert 0
-        app = app.main({})
+        import pdb; pdb.set_trace()
+        conf_dir = os.path.dirname(__file__)
+        app = loadapp('config:test.ini', relative_to=conf_dir)
         self.server = http.StopableWSGIServer.create(app, port=8080)
+
+        #app = app.main({})
+        #self.server = http.StopableWSGIServer.create(app, port=8080)
 
     def tearDown(self):
         self.server.shutdown()
