@@ -3,3 +3,6 @@
 bin
 parts
 src
+dist
+lib
+develop-eggs
