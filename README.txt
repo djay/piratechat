@@ -8,3 +8,7 @@ bin/buildout
 To run
 
 bin/pserve paster.ini
+
+To Test
+
+bin/pybot piratechat/tests/test_app.robot
