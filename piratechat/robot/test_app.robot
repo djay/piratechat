@@ -1,7 +1,7 @@
 
 *** Settings ***
 
-#Variables  pyramid_robot/tests/robot/variables.py
+Variables  pyramid_robot/tests/robot/variables.py
 
 Library  Selenium2Library  timeout=${SELENIUM_TIMEOUT}  implicit_wait=${SELENIUM_IMPLICIT_WAIT}
 
@@ -13,15 +13,14 @@ Suite Teardown  Suite Teardown
 
 
 User talks to a pirate parrot
-   user opens the app
    user enters "hello"
-   user hits send
+   user hits "send"
    user sees "ahoy"
 
 
-Scenario: Test Hello View
-     When I go to  ${APP_URL}/hello/Victor
-     Then Page Should Contain  Hello Victor!
+#Scenario: Test Hello View
+#     When I go to  ${APP_URL}/hello/Victor
+#     Then Page Should Contain  Hello Victor!
 
 
 
@@ -34,6 +33,15 @@ Suite Setup
 
 Suite Teardown
   Close All Browsers
+
+user enters "${line}"
+   Input Text  cssline  ${line}
+
+user hits "${button}"
+   Click Button  ${button}
+
+user sees "${text}"
+   Page Contains  ${text}
 
 I go to
     [Arguments]  ${location}

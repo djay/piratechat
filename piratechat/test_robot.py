@@ -1,6 +1,8 @@
 import os
 import robotsuite
 import unittest
+from pyramid_robot.layer import Layer, layered
+from piratechat.layers import PYRAMIDROBOTLAYER
 
 
 
@@ -15,15 +17,17 @@ def test_suite():
     ]
     print robot_tests
     for test in robot_tests:
-        suite.addTests(robotsuite.RobotTestSuite(test))
-
+        suite.addTests([
+            layered(robotsuite.RobotTestSuite(test),
+            layer=PYRAMIDROBOTLAYER),
+        ])
     return suite
 
-suite = test_suite()
+#suite = test_suite()
 
 #unittest.TextTestRunner(verbosity=2).run(suite)
 
-unittest.main(defaultTest='test_suite')
+#unittest.main(defaultTest='test_suite')
 
 if __name__ == '__main__':
-    import ipdb;ipdb.set_trace()
+    unittest.main(defaultTest='test_suite')
