@@ -5,14 +5,13 @@ version = '1.0'
 
 setup(name='piratechat',
       version=version,
-      description="all your hosts are belong to us!!!",
+      description="Demo of pyramid_sockjs amoung others",
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      keywords='gevent',
+      keywords='gevent sockjs buildout pyramid',
       author='Dylan Jay',
       author_email='software@pretaweb.com',
       license='',
-      top_level="piratechat",
-      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      packages=find_packages(exclude=['ez_setup']),
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -21,6 +20,12 @@ setup(name='piratechat',
           'pyramid',
           'pyramid_sockjs',
         ],
+      extras_require={
+        'test': ['pyramid_robot',
+                 'robotframework-selenium2library',
+                 'robotframework'
+                 ],
+      },
       entry_points={
         'paste.app_factory': [
             'app=piratechat.app:application',
