@@ -17,10 +17,12 @@ class MapSession(Session):
 # our app configuration
 def application(global_config, **settings):
     config = Configurator(settings=settings)
-    config.include('pyramid_sockjs')
     config.add_static_view(name="static",path="static", cache_max_age=3600)
-    config.add_sockjs_route(session=MapSession)
     config.add_view(index, renderer='piratechat:app.pt')
+
+    config.include('pyramid_sockjs')
+    config.add_sockjs_route(session=MapSession)
+
     return config.make_wsgi_app()
 
 if __name__ == '__main__':
