@@ -1,4 +1,3 @@
-import os
 import robotsuite
 import unittest
 from pyramid_robot.layer import Layer, layered
