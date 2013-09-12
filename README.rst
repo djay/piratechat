@@ -10,16 +10,25 @@ Acceptance Test Driven Development
 
 I often start with a story of what I want to create which I write down in scenario form similar to this
 
+.. code::
+
     User talks to a pirate parrot
        user opens piratechatapp
        user enters "pyramid_sockjs is cool"
        user hits "send"
        user sees "pyramid_sockjs is cool"
 
+It's often not all the details of the interactions and not in any particular syntax.
+Next I start building the app or give this spec to someone else to build. The idea is for them to turn
+this into a "real" test as they build the app.
+
 SockJS
 ------
 
-./piratechat/app.pt
+This is a simple chameleon template that mainly does it work in realtime by using sockjs.
+
+.. code::
+  ./piratechat/app.pt
 
 SockJS is a nice library that wraps both AJAX and websockets to create a bidirectional socket compatible with
 older browsers and networks. The template shows a simple form and some JS that sets up a connection back
@@ -28,13 +37,16 @@ to the server.
 Pyramid
 -------
 
-./piratechat/app.py
+.. code::
+  ./piratechat/app.py
 
 Pyramid is combined with pyramid_sockjs to create a very simple to write realtime web server. Pyramid_sockjs
 has advantages over Tornado in that it can run on the same port as normal http connections and Pyramid is
 a great micro framework that won't hamper you if you decide to also create bigger projects with it.
 
-    class MapSession(Session):
+.. code::
+
+   class MapSession(Session):
 
         def on_message(self, line):
             print line
@@ -54,6 +66,7 @@ Gunicorn allows us to replace threaded workers with gevent workers transparently
 
 This can be seen in ./paster.ini
 
+.. code::
     [app:main]
     use = egg:piratechat#app
 
@@ -77,6 +90,7 @@ you to glue them togeather so you don't have to give complex install instruction
 
 The install instructions for a buildout based application are always (note this doesn't change for any buildout based application)
 
+.. code::
     virtualenv .
     bin/easy_install -U setuptools
     bin/python bootstrap.py
@@ -87,15 +101,18 @@ to ensure our buildout was completely isolated from system python in case of pac
 
 To run
 
+.. code::
     bin/pserve paster.ini
 
 or to run the gunicorn/gevent version
 
+.. code::
     bin/gunicorn_paster paster.ini
 
 A buildout is made up of parts, and what each part does is determined by a recipe and it's part definition.
 A recipe is a package that is downloaded off pypi. For example the following gunicorn part
 
+.. code::
     [gunicorn]
     recipe = zc.recipe.egg
     eggs =
@@ -107,6 +124,7 @@ A recipe is a package that is downloaded off pypi. For example the following gun
 
 is the buildout equivilent of
 
+.. code::
     virtualenv .
     bin/pip install gunicorn pyramid_sockjs piratechat
     mv bin/python bin/mypy
@@ -126,6 +144,7 @@ as firefox. Its simple test language allows us to turn very readable statements 
 
 In this case your test_app.robot file includes
 
+.. code::
     *** Test Cases ***
 
     User talks to a pirate parrot
@@ -152,10 +171,12 @@ Here we are using Selenium2 keywords but robot comes with many other librariest 
 
 RobotFramework comes with it's own test runner which we can use to run against a live server.
 
+.. code::
     bin/pybot piratechat/tests/test_app.robot
 
 This will create logs of the run including screenshots and html of the pages where failures occur.
 
+.. code::
     ./robot_report.html
 
 RobotSuite
@@ -167,11 +188,13 @@ This is best done by integrating with pythons UnitTest framework via the RobotSu
 
 We've included running the tests with two tools. zope.testrunner
 
+.. code::
    bin/test
    #TODO get this working
 
 or pytest
 
+.. code::
    bin/py.test .
    #TODO get this working
 
