@@ -4,7 +4,7 @@ Intro
 This is a demo created for a lightning talk designed to show off a number of things for a talk I gave
 at kiwipycon 2013. The talk was "The goodies that zope begat" and highlighted a number of tools created
 or used in the zope/plone/zope communities that might be useful python developers.
-The lightning talk is the 1st in (this youtube video)[http://www.youtube.com/watch?v=G1fIPwkCsgg]
+The lightning talk is the 1st in `this youtube video <http://www.youtube.com/watch?v=G1fIPwkCsgg>`_.
 
 Acceptance Test Driven Development
 ----------------------------------
