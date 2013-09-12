@@ -28,6 +28,7 @@ SockJS
 This is a simple chameleon template that mainly does it work in realtime by using sockjs.
 
 .. code::
+
   ./piratechat/app.pt
 
 SockJS is a nice library that wraps both AJAX and websockets to create a bidirectional socket compatible with
@@ -38,6 +39,7 @@ Pyramid
 -------
 
 .. code::
+
   ./piratechat/app.py
 
 Pyramid is combined with pyramid_sockjs to create a very simple to write realtime web server. Pyramid_sockjs
@@ -67,6 +69,7 @@ Gunicorn allows us to replace threaded workers with gevent workers transparently
 This can be seen in ./paster.ini
 
 .. code::
+
     [app:main]
     use = egg:piratechat#app
 
@@ -91,6 +94,7 @@ you to glue them togeather so you don't have to give complex install instruction
 The install instructions for a buildout based application are always (note this doesn't change for any buildout based application)
 
 .. code::
+
     virtualenv .
     bin/easy_install -U setuptools
     bin/python bootstrap.py
@@ -102,17 +106,20 @@ to ensure our buildout was completely isolated from system python in case of pac
 To run
 
 .. code::
+
     bin/pserve paster.ini
 
 or to run the gunicorn/gevent version
 
 .. code::
+
     bin/gunicorn_paster paster.ini
 
 A buildout is made up of parts, and what each part does is determined by a recipe and it's part definition.
 A recipe is a package that is downloaded off pypi. For example the following gunicorn part
 
 .. code::
+
     [gunicorn]
     recipe = zc.recipe.egg
     eggs =
@@ -125,6 +132,7 @@ A recipe is a package that is downloaded off pypi. For example the following gun
 is the buildout equivilent of
 
 .. code::
+
     virtualenv .
     bin/pip install gunicorn pyramid_sockjs piratechat
     mv bin/python bin/mypy
@@ -145,6 +153,7 @@ as firefox. Its simple test language allows us to turn very readable statements 
 In this case your test_app.robot file includes
 
 .. code::
+
     *** Test Cases ***
 
     User talks to a pirate parrot
@@ -172,11 +181,13 @@ Here we are using Selenium2 keywords but robot comes with many other librariest 
 RobotFramework comes with it's own test runner which we can use to run against a live server.
 
 .. code::
+
     bin/pybot piratechat/tests/test_app.robot
 
 This will create logs of the run including screenshots and html of the pages where failures occur.
 
 .. code::
+
     ./robot_report.html
 
 RobotSuite
@@ -189,12 +200,14 @@ This is best done by integrating with pythons UnitTest framework via the RobotSu
 We've included running the tests with two tools. zope.testrunner
 
 .. code::
+
    bin/test
    #TODO get this working
 
 or pytest
 
 .. code::
+
    bin/py.test .
    #TODO get this working
 
